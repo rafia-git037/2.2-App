@@ -1,0 +1,186 @@
+/* App.css */
+.App {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+.search-page {
+  background-image: url('/src/images/search-page-bg.jpg'); /* Path to your background image */
+  background-size: cover; /* Cover the entire element */
+  background-position: center; /* Center the image */
+  padding: 20px;
+  border-radius: 10px;
+}
+.search {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  font-size: 16px;
+  max-width: 400px;
+}
+
+.favorite-book {
+  margin-bottom: 15px; /* Add space between favorite book items */
+}
+
+.button-container {
+  margin-top: 10px; /* Adjust the space above the buttons */
+}
+
+.book-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.book-table th, .book-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.book-table th {
+  background-color: #f4f4f4;
+  text-align: left;
+}
+
+.book-table .favourite {
+  background-color: #834dac;
+}
+
+.book-table button {
+  padding: 8px 12px;
+  background-color: #49b1a8;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.navbar {
+  background-color: #535658;
+  padding: 10px 20px;
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  width: 40px; /* Adjust size of the logo image */
+  height: 40px; /* Ensure height matches width to create a circle */
+  border-radius: 50%; /* Make it a circle */
+  object-fit: cover; /* Ensure the image covers the entire circle */
+}
+.logo-text {
+  color: #fff; /* Set color of text to white */
+  font-size: 20px; /* Adjust font size */
+  font-weight: bold; /* Optionally make the text bold */
+  margin-left: 10px; /* Add spacing between logo and text */
+}
+.nav-links {
+  display: flex;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  margin-right: 25px; /* Add spacing between navigation links */
+}
+
+.login-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+.favourite-button {
+  padding: 12px 20px;
+  background-color: #497bb1;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}
+
+.favourite-button:hover {
+  background-color: #b12566;
+}
+
+.favourite-button.active {
+  background-color: #621de2;
+}
+
+.back-button {
+  padding: 12px 20px;
+  background-color: #d9534f;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  margin-left: 10px; /* Space between buttons */
+}
+
+.back-button:hover {
+  background-color: #c9302c;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+/* App.css */
+
+.add-button, .delete-button {
+  padding: 12px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  margin-left: 10px; /* Space between buttons */
+}
+
+.add-button:hover {
+  background-color: #218838;
+}
+
+.delete-button {
+  background-color: #dc3545; /* Red */
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+.delete-button.active {
+  background-color: #bd2130;
+}
+
+.add-book-form {
+  margin-bottom: 20px;
+}
+
+.add-book-form input {
+  padding: 10px;
+  margin-right: 10px;
+  font-size: 16px;
+  max-width: 300px;
+}
