@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles.css'; // Import the combined CSS file
 
 function AboutUs() {
   return (

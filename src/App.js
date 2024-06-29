@@ -1,4 +1,3 @@
-// App.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Book } from './book'; // Assuming Book data is imported correctly
@@ -11,7 +10,7 @@ import EditBook from './EditBook'; // Import EditBook component
 // Import images
 import searchBgImage from './images/search-page-bg.jpg';
 
-const initialBooks = Book; // Assuming Book data is correctly exported/imported
+const initialBooks = JSON.parse(localStorage.getItem('books')) || Book; // Load books from localStorage or use initial data
 
 function App() {
   // State variables
@@ -35,6 +34,11 @@ function App() {
     bgImg.src = searchBgImage;
     bgImg.onload = () => setBgLoaded(true);
   }, []);
+
+  // Save books to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('books', JSON.stringify(books));
+  }, [books]);
 
   // Handle click to toggle favorite status
   const handleFavouriteClick = (id) => {
@@ -206,6 +210,9 @@ function App() {
                 />
                 <button className="add-button" onClick={handleAddBook}>
                   Add Book
+                </button>
+                <button className="cancel-button" onClick={toggleAddForm}>
+                  Cancel Add
                 </button>
               </div>
             ) : editBook ? (

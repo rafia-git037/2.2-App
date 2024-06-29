@@ -4,7 +4,7 @@
 }
 
 .search-page {
-  background-image: url('/src/images/search-page-bg.jpg'); /* Path to your background image */
+  background-image: url('/src/images/search-page-bg.jpg'); 
   background-size: cover; /* Cover the entire element */
   background-position: center; /* Center the image */
   padding: 20px;
@@ -177,4 +177,14 @@
   margin-right: 10px;
   font-size: 16px;
   max-width: 300px;
+}
+.button-container {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+.favourite-button, .back-button, .add-button, .cancel-button, .confirm-delete, .cancel-delete, .delete-button {
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
 }
