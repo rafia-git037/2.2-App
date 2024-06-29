@@ -1,9 +1,10 @@
 import React from 'react';
 
 const Table = ({ books, onFavouriteClick, onEditClick, onDeleteClick }) => {
-  const handleFavouriteClick = (id, isFavourite) => {
+  const handleFavouriteClick = (id) => {
     const book = books.find(book => book.id === id);
     if (book) {
+      const isFavourite = book.isFavourite;
       if (isFavourite) {
         console.log(`"${book.Name}" is removed from favourites`);
       } else {
@@ -30,7 +31,7 @@ const Table = ({ books, onFavouriteClick, onEditClick, onDeleteClick }) => {
             <td>{book.Writer}</td>
             <td>${book.Price}</td>
             <td className="button-container">
-              <button onClick={() => onFavouriteClick(book.id)}>
+              <button onClick={() => handleFavouriteClick(book.id)}>
                 {book.isFavourite ? 'Unfavourite' : 'Favourite'}
               </button>
               <button onClick={() => onEditClick(book.id)}>Edit</button>

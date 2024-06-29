@@ -1,4 +1,3 @@
-// EditBook.js
 import React, { useState } from 'react';
 
 const EditBook = ({ book, onSave, onCancel }) => {
@@ -6,9 +5,9 @@ const EditBook = ({ book, onSave, onCancel }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEditedBook((prevBook) => ({
+    setEditedBook(prevBook => ({
       ...prevBook,
-      [name]: value,
+      [name]: value
     }));
   };
 
