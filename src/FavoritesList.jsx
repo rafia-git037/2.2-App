@@ -2,7 +2,7 @@
 import React from 'react';
 import Delete from './Delete';
 
-const FavoritesList = ({ books, onEditClick, onDeleteClick }) => {
+const FavoritesList = ({ books, onDeleteClick }) => {
   return (
     <div className="favorites-list">
       {books.map(book => (

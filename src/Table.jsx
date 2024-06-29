@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Table = ({ books, onFavouriteClick }) => {
+const Table = ({ books, onFavouriteClick, onEditClick, onDeleteClick }) => {
   const handleFavouriteClick = (id, isFavourite) => {
     const book = books.find(book => book.id === id);
     if (book) {
@@ -9,7 +9,7 @@ const Table = ({ books, onFavouriteClick }) => {
       } else {
         console.log(`"${book.Name}" is added to favourites`);
       }
-      onFavouriteClick(id); 
+      onFavouriteClick(id);
     }
   };
 
@@ -20,22 +20,21 @@ const Table = ({ books, onFavouriteClick }) => {
           <th>Name</th>
           <th>Writer</th>
           <th>Price</th>
-          <th></th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        {books.map(book => (
-          <tr key={book.id}>
+        {books.map((book) => (
+          <tr key={book.id} className={book.isFavourite ? 'favourite' : ''}>
             <td>{book.Name}</td>
             <td>{book.Writer}</td>
             <td>${book.Price}</td>
-            <td>
-              <button
-                className="favourite-btn"
-                onClick={() => handleFavouriteClick(book.id, book.isFavourite)}
-              >
+            <td className="button-container">
+              <button onClick={() => onFavouriteClick(book.id)}>
                 {book.isFavourite ? 'Unfavourite' : 'Favourite'}
               </button>
+              <button onClick={() => onEditClick(book.id)}>Edit</button>
+              <button onClick={() => onDeleteClick(book.id)}>Delete this book</button>
             </td>
           </tr>
         ))}

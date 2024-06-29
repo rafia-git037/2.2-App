@@ -1,8 +1,8 @@
-/* App.css */
 .App {
   font-family: Arial, sans-serif;
   margin: 20px;
 }
+
 .search-page {
   background-image: url('/src/images/search-page-bg.jpg'); /* Path to your background image */
   background-size: cover; /* Cover the entire element */
@@ -10,6 +10,7 @@
   padding: 20px;
   border-radius: 10px;
 }
+
 .search {
   flex: 1;
   padding: 10px;
@@ -46,6 +47,11 @@
   background-color: #834dac;
 }
 
+.book-table .button-container {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
 .book-table button {
   padding: 8px 12px;
   background-color: #49b1a8;
@@ -54,6 +60,7 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
 .navbar {
   background-color: #535658;
   padding: 10px 20px;
@@ -76,12 +83,14 @@
   border-radius: 50%; /* Make it a circle */
   object-fit: cover; /* Ensure the image covers the entire circle */
 }
+
 .logo-text {
   color: #fff; /* Set color of text to white */
   font-size: 20px; /* Adjust font size */
   font-weight: bold; /* Optionally make the text bold */
   margin-left: 10px; /* Add spacing between logo and text */
 }
+
 .nav-links {
   display: flex;
 }
@@ -100,7 +109,6 @@
   border-radius: 4px;
   cursor: pointer;
 }
-
 
 .favourite-button {
   padding: 12px 20px;
@@ -143,9 +151,8 @@
   align-items: center;
   margin-bottom: 20px;
 }
-/* App.css */
 
-.add-button, .delete-button {
+.add-button {
   padding: 12px 20px;
   background-color: #28a745;
   color: #fff;
@@ -159,19 +166,6 @@
 
 .add-button:hover {
   background-color: #218838;
-}
-
-.delete-button {
-  background-color: #dc3545; /* Red */
-  color: white;
-}
-
-.delete-button:hover {
-  background-color: #c82333;
-}
-
-.delete-button.active {
-  background-color: #bd2130;
 }
 
 .add-book-form {

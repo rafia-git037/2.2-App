@@ -6,6 +6,7 @@ import Table from './Table';
 import FavoritesList from './FavoritesList';
 import Home from './Home';
 import Navigation from './Navigation'; // Import the Navigation component
+import EditBook from './EditBook'; // Import EditBook component
 
 // Import images
 import searchBgImage from './images/search-page-bg.jpg';
@@ -21,6 +22,7 @@ function App() {
   const [showSearchPage, setShowSearchPage] = useState(false);
   const [bgLoaded, setBgLoaded] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [editBook, setEditBook] = useState(null); // State for the book being edited
   const [newBook, setNewBook] = useState({
     Name: "",
     Writer: "",
@@ -86,6 +88,32 @@ function App() {
       ...prevBook,
       [name]: value
     }));
+  };
+
+  // Handle edit book click
+  const handleEditClick = (id) => {
+    const bookToEdit = books.find(book => book.id === id);
+    setEditBook(bookToEdit);
+  };
+
+  // Handle save edited book
+  const handleSaveEdit = (editedBook) => {
+    setBooks(prevBooks =>
+      prevBooks.map(book =>
+        book.id === editedBook.id ? editedBook : book
+      )
+    );
+    setEditBook(null); // Exit edit mode
+  };
+
+  // Handle cancel edit
+  const handleCancelEdit = () => {
+    setEditBook(null); // Exit edit mode
+  };
+
+  // Handle delete book
+  const deleteBook = (id) => {
+    setBooks(prevBooks => prevBooks.filter(book => book.id !== id));
   };
 
   // Filter books based on search query
@@ -180,6 +208,12 @@ function App() {
                   Add Book
                 </button>
               </div>
+            ) : editBook ? (
+              <EditBook
+                book={editBook}
+                onSave={handleSaveEdit}
+                onCancel={handleCancelEdit}
+              />
             ) : (
               <>
                 <div className="toolbar-actions">
@@ -187,14 +221,7 @@ function App() {
                     className="add-button"
                     onClick={toggleAddForm}
                   >
-                    Add
-                  </button>
-
-                  <button
-                    className="delete-button"
-                    onClick={handleDeleteFavorite}
-                  >
-                    Delete
+                    Add New Book
                   </button>
                 </div>
 
@@ -202,10 +229,10 @@ function App() {
                 {showFavoritesScreen ? (
                   <div className="favorites-section">
                     <h2>Favorite Books:</h2>
-                  
                     {favoriteBooks.length > 0 ? (
                       <FavoritesList
                         books={favoriteBooks}
+                        onEditClick={handleEditClick}
                         onDeleteClick={handleDeleteFavorite}
                       />
                     ) : (
@@ -213,7 +240,12 @@ function App() {
                     )}
                   </div>
                 ) : (
-                  <Table books={filteredBooks} onFavouriteClick={handleFavouriteClick} />
+                  <Table
+                    books={filteredBooks}
+                    onFavouriteClick={handleFavouriteClick}
+                    onEditClick={handleEditClick}
+                    onDeleteClick={deleteBook}
+                  />
                 )}
               </>
             )}
