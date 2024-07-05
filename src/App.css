@@ -61,55 +61,6 @@
   cursor: pointer;
 }
 
-.navbar {
-  background-color: #535658;
-  padding: 10px 20px;
-}
-
-.navbar-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-}
-
-.logo-image {
-  width: 40px; /* Adjust size of the logo image */
-  height: 40px; /* Ensure height matches width to create a circle */
-  border-radius: 50%; /* Make it a circle */
-  object-fit: cover; /* Ensure the image covers the entire circle */
-}
-
-.logo-text {
-  color: #fff; /* Set color of text to white */
-  font-size: 20px; /* Adjust font size */
-  font-weight: bold; /* Optionally make the text bold */
-  margin-left: 10px; /* Add spacing between logo and text */
-}
-
-.nav-links {
-  display: flex;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #fff;
-  margin-right: 25px; /* Add spacing between navigation links */
-}
-
-.login-btn {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 .favourite-button {
   padding: 12px 20px;
   background-color: #497bb1;
@@ -142,7 +93,7 @@
 }
 
 .back-button:hover {
-  background-color: #c9302c;
+  background-color: #23abe0;
 }
 
 .toolbar {
@@ -188,3 +139,7 @@
   padding: 10px;
   cursor: pointer;
 }
+
+
+/* Other styles remain unchanged */
+
