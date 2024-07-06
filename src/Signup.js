@@ -5,13 +5,35 @@ const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState(''); // State to hold success or error message
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
+    
+    try {
+      const response = await fetch('http://localhost:8000/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage(data.message); // Set success message
+        // Clear input fields
+        setName('');
+        setEmail('');
+        setPassword('');
+      } else {
+        setMessage(data.message); // Set error message
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setMessage('Error: ' + error.message); // Set error message
+    }
   };
 
   return (
@@ -23,6 +45,7 @@ const Signup = () => {
         </div>
         <div className="signup-right">
           <form onSubmit={handleSubmit}>
+
             <div>
               <label>Enter your name:</label>
               <input 
@@ -32,6 +55,7 @@ const Signup = () => {
                 required 
               />
             </div>
+            
             <div>
               <label>Enter your email:</label>
               <input 
@@ -52,6 +76,7 @@ const Signup = () => {
             </div>
             <button type="submit">Sign Up</button>
           </form>
+          {message && <p>{message}</p>} {/* Display success or error message */}
           <div className="login">
             <a href="/login">Login</a>
           </div>

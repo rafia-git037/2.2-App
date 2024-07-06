@@ -1,3 +1,5 @@
+//schemas.js - backend
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
