@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
+
 import { Book } from './book';
 import Home from './Home';
 import Navigation from './Navigation';
 import SearchPage from './SearchPage';
+
 import Login from './Login'; 
 import Signup from './Signup';
+import ForgotPassword from './ForgotPassword';
 
 // Import images
 import searchBgImage from './images/search-page-bg.jpg';
@@ -131,6 +134,7 @@ function App() {
           } />
           <Route path="/login" element={<Login />} /> {/* Login route */}
           <Route path="/signup" element={<Signup />} /> {/* Signup route */}
+          <Route path="/forgot-password" element={<ForgotPassword />} /> {/* ForgotPassword route */}
         </Routes>
       </div>
     </Router>

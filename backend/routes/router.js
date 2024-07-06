@@ -32,6 +32,8 @@ const express = require('express');
 const router = express.Router();
 const mySchemas = require('../models/schemas');
 
+
+// Signup route
 router.post('/signup', async (req, res) => {
   const { name, email, password } = req.body;
   console.log('data from frontend ', req.body);
@@ -88,6 +90,28 @@ router.post('/login', async (req, res) => {
   }
 });
 
+
+// Password reset route
+router.post('/reset-password', async (req, res) => {
+  const { name, email, newPassword } = req.body;
+
+  try {
+    const user = await mySchemas.Users.findOne({ name, email });
+
+    if (!user) {
+      return res.status(400).json({ message: 'User with the provided name and email does not exist' });
+    }
+
+    user.password = newPassword;
+    await user.save();
+    res.status(200).json({ message: 'Password reset successfully!' });
+  } catch (error) {
+    console.error('Error resetting password:', error);
+    res.status(500).json({ message: 'Error resetting password: ' + error.message });
+  }
+});
+
 module.exports = router;
+
 
 
