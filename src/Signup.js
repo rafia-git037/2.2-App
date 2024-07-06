@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import './Signup.css';
 
 const Signup = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission
+    console.log('Name:', name);
     console.log('Email:', email);
     console.log('Password:', password);
   };
@@ -22,9 +24,18 @@ const Signup = () => {
         <div className="signup-right">
           <form onSubmit={handleSubmit}>
             <div>
-              <label>Enter your email:</label>
+              <label>Enter your name:</label>
               <input 
                 type="text" 
+                value={name} 
+                onChange={(e) => setName(e.target.value)} 
+                required 
+              />
+            </div>
+            <div>
+              <label>Enter your email:</label>
+              <input 
+                type="email" 
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)} 
                 required 
@@ -39,13 +50,11 @@ const Signup = () => {
                 required 
               />
             </div>
-            
             <button type="submit">Sign Up</button>
           </form>
           <div className="login">
-  <a href="/login">Login</a>
-</div>
-
+            <a href="/login">Login</a>
+          </div>
         </div>
       </div>
     </div>
