@@ -1,14 +1,17 @@
 .home {
-  text-align: center;
+ text-align: center;
   margin-top: 50px;
   height: 100vh; /* Set the height to viewport height */
   background-image: url('/src/images/hero-bg.jpg'); /* Adjust the path to your image */
   background-size: cover; /* Cover the entire element */
+ background-repeat: no-repeat;
   background-position: center; /* Center the image */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #fff;
+  padding: 20px;
 }
 
 .search-button {
