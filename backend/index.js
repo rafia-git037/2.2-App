@@ -38,6 +38,15 @@ const PORT = process.env.PORT || 8080;
 
 // Middleware
 app.use(bodyParser.json());
+
+// Allow requests from specific origins
+const corsOptions = {
+  origin: 'https://bookline-theta.vercel.app/',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions));
+
 app.use(cors());
 
 // Routes
