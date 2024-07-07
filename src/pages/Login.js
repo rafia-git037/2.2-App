@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from '../utils';
 import '../pages/Login.css';
@@ -11,21 +11,17 @@ function Login() {
     });
 
     const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        const copyLoginInfo = { ...loginInfo };
-        copyLoginInfo[name] = value;
-        setLoginInfo(copyLoginInfo);
+        setLoginInfo(prevState => ({ ...prevState, [name]: value }));
     };
 
     const handleLogin = async (e) => {
         e.preventDefault();
         const { email, password } = loginInfo;
         if (!email || !password) {
-            return handleError('email and password are required');
+            return handleError('Email and password are required');
         }
         try {
             const url = `http://localhost:8080/auth/login`;
@@ -38,23 +34,21 @@ function Login() {
             });
 
             const result = await response.json();
-            console.log(result);
             const { success, message, jwtToken, name, error } = result;
             if (success) {
                 handleSuccess(message);
                 localStorage.setItem('token', jwtToken);
                 localStorage.setItem('loggedInUser', name);
                 setTimeout(() => {
-                    navigate(from, { replace: true });
+                    navigate('/');
                 }, 1000);
             } else if (error) {
-                const details = error?.details[0].message;
-                handleError(details);
-            } else if (!success) {
+                handleError(error.details[0].message);
+            } else {
                 handleError(message);
             }
         } catch (err) {
-            handleError(err);
+            handleError(err.message);
         }
     };
 
