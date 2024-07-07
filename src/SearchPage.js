@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Table from './Table';
 import AddBook from './AddBook';
 import EditBook from './EditBook';
@@ -25,56 +26,50 @@ const SearchPage = ({
   handleDeleteFavorite,
   handleEditClick,
   deleteBook,
-  handleBackClick
 }) => {
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    navigate(-1); // Navigate to the previous page
+  };
+
   return (
     <div className="search-page" style={{ backgroundImage: `url(${searchBgImage})` }}>
-      <div className="toolbar">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="search"
-          id="search"
-          name="search"
-          value={query}
-          onChange={e => setQuery(e.target.value)}
-        />
-        <button
-          className={`favourite-button ${favoriteBooks.length > 0 ? 'active' : ''}`}
-          onClick={toggleFavoritesScreen}
-          aria-label={`${showFavoritesScreen ? 'Close favorites' : 'View favorites'}`}
-        >
-          {showFavoritesScreen ? 'Close Favorites' : 'View Favorites'}
-        </button>
-        <button
-          className="back-button"
-          onClick={handleBackClick}
-        >
+      <div className="top-right">
+        <button className="back-button" onClick={handleBackClick}>
           Back
         </button>
       </div>
+      <div className="toolbar">
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="search"
+            id="search"
+            name="search"
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+          />
+          <button
+            className={`favourite-button ${favoriteBooks.length > 0 ? 'active' : ''}`}
+            onClick={toggleFavoritesScreen}
+            aria-label={`${showFavoritesScreen ? 'Close favorites' : 'View favorites'}`}
+          >
+            {showFavoritesScreen ? 'Close Favorites' : 'View Favorites'}
+          </button>
+          <button className="add-button" onClick={toggleAddForm}>
+            Add New Book
+          </button>
+        </div>
+      </div>
 
       {showAddForm ? (
-        <AddBook
-          addBook={addBook}
-          toggleAddForm={toggleAddForm}
-        />
+        <AddBook addBook={addBook} toggleAddForm={toggleAddForm} />
       ) : editBook ? (
-        <EditBook
-          book={editBook}
-          onSave={saveEdit}
-          onCancel={cancelEdit}
-        />
+        <EditBook book={editBook} onSave={saveEdit} onCancel={cancelEdit} />
       ) : (
         <>
-          <div className="toolbar-actions">
-            <button
-              className="add-button"
-              onClick={toggleAddForm}
-            >
-              Add New Book
-            </button>
-          </div>
           {showFavoritesScreen ? (
             <div className="favorites-section">
               <h2>Favorite Books:</h2>

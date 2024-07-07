@@ -1,31 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
 
 import { Book } from './book';
 import Home from './Home';
-import Navigation from './Navigation';
 import SearchPage from './SearchPage';
+import { AuthProvider, useAuth } from './AuthContext';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import FavoritesScreen from './FavoritesScreen'; // Import FavoritesScreen
 
-import Login from './Login'; 
-import Signup from './Signup';
-import ForgotPassword from './ForgotPassword';
-
-// Import images
 import searchBgImage from './images/search-page-bg.jpg';
 
 const initialBooks = JSON.parse(localStorage.getItem('books')) || Book;
 
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated } = useAuth();
+  const location = useLocation();
+
+  return isAuthenticated ? (
+    children
+  ) : (
+    <Navigate to="/login" state={{ from: location }} />
+  );
+};
+
 function App() {
   const [books, setBooks] = useState(initialBooks);
   const [query, setQuery] = useState("");
-  const [favorites, setFavorites] = useState([]);
   const [showFavoritesScreen, setShowFavoritesScreen] = useState(false);
-  const [showSearchPage, setShowSearchPage] = useState(false);
-  const [bgLoaded, setBgLoaded] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [editBook, setEditBook] = useState(null);
-  const [showNavigationBar, setShowNavigationBar] = useState(true);
+  const [bgLoaded, setBgLoaded] = useState(false);
 
   useEffect(() => {
     const bgImg = new Image();
@@ -90,54 +96,56 @@ function App() {
 
   const favoriteBooks = books.filter(book => book.isFavourite);
 
-  const handleSearchClick = () => {
-    setShowSearchPage(true);
-    setShowNavigationBar(false);
-  };
-
-  const handleBackClick = () => {
-    setShowSearchPage(false);
-    setShowNavigationBar(true);
-  };
-
   const toggleAddForm = () => {
     setShowAddForm(!showAddForm);
   };
 
   return (
-    <Router>
-      <div className="App">
-        {showNavigationBar && <Navigation />}
-        <Routes>
-          <Route path="/" element={<Home onSearchClick={handleSearchClick} />} />
-          <Route path="/search" element={
-            <SearchPage
-              books={books}
-              query={query}
-              setQuery={setQuery}
-              showAddForm={showAddForm}
-              toggleAddForm={toggleAddForm}
-              addBook={handleAddBook}
-              editBook={editBook}
-              saveEdit={handleSaveEdit}
-              cancelEdit={handleCancelEdit}
-              filteredBooks={filteredBooks}
-              favoriteBooks={favoriteBooks}
-              showFavoritesScreen={showFavoritesScreen}
-              toggleFavoritesScreen={toggleFavoritesScreen}
-              handleFavouriteClick={handleFavouriteClick}
-              handleDeleteFavorite={handleDeleteFavorite}
-              handleEditClick={handleEditClick}
-              deleteBook={deleteBook}
-              handleBackClick={handleBackClick}
-            />
-          } />
-          <Route path="/login" element={<Login />} /> {/* Login route */}
-          <Route path="/signup" element={<Signup />} /> {/* Signup route */}
-          <Route path="/forgot-password" element={<ForgotPassword />} /> {/* ForgotPassword route */}
-        </Routes>
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/search"element={
+                <ProtectedRoute>
+                  <SearchPage
+                    books={books}
+                    query={query}
+                    setQuery={setQuery}
+                    showAddForm={showAddForm}
+                    toggleAddForm={toggleAddForm}
+                    addBook={handleAddBook}
+                    editBook={editBook}
+                    saveEdit={handleSaveEdit}
+                    cancelEdit={handleCancelEdit}
+                    filteredBooks={filteredBooks}
+                    favoriteBooks={favoriteBooks}
+
+                    showFavoritesScreen={showFavoritesScreen}
+                    
+                    toggleFavoritesScreen={toggleFavoritesScreen}
+                    handleFavouriteClick={handleFavouriteClick}
+                    handleDeleteFavorite={handleDeleteFavorite}
+                    handleEditClick={handleEditClick}
+                    deleteBook={deleteBook}
+                  />
+               </ProtectedRoute>
+            } />
+            <Route path="/favorites" element={
+              <ProtectedRoute>
+                <FavoritesScreen
+                  books={favoriteBooks}
+                  handleEditClick={handleEditClick}
+                  handleDeleteFavorite={handleDeleteFavorite}
+                />
+              </ProtectedRoute>
+            } />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

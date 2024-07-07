@@ -1,40 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState(''); // State to hold success or error message
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      const response = await fetch('http://localhost:8000/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name, email, password })
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setMessage('Login successful!'); // Set success message
-        // Clear input fields
-        setName('');
-        setEmail('');
-        setPassword('');
-      } else {
-        setMessage(data.message); // Set error message
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setMessage('Error: ' + error.message); // Set error message
-    }
+    // Handle form submission
+    console.log('Username:', username);
+    console.log('Password:', password);
   };
 
   return (
@@ -46,21 +21,13 @@ const Login = () => {
         </div>
         <div className="login-right">
           <form onSubmit={handleSubmit}>
+            
             <div>
-              <label>Enter your name:</label>
+              <label>Email:</label>
               <input 
                 type="text" 
-                value={name} 
-                onChange={(e) => setName(e.target.value)} 
-                required 
-              />
-            </div>
-            <div>
-              <label>Enter your email:</label>
-              <input 
-                type="email" 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
+                value={username} 
+                onChange={(e) => setUsername(e.target.value)} 
                 required 
               />
             </div>
@@ -74,14 +41,13 @@ const Login = () => {
               />
             </div>
             <div className="forgot-password">
-              <Link to="/forgot-password">Forgot password?</Link>
+              <a href="#">Forgot password?</a>
             </div>
             <button type="submit">Log In</button>
           </form>
-          {message && <p>{message}</p>} {/* Display success or error message */}
           <div className="signup">
-            <Link to="/signup">Signup</Link>
-          </div>
+  <a href="/signup">Signup</a>
+</div>
         </div>
       </div>
     </div>

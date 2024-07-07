@@ -1,0 +1,103 @@
+.login-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0; /* Adjust background color as needed */
+}
+
+.login-container {
+  display: flex;
+  max-width: 800px;
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-left {
+  background-image: url('../images/login-img.jpg'); /* Ensure this path is correct */
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px 0 0 10px;
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+}
+
+.login-left h2 {
+  margin-bottom: 20px;
+}
+
+.login-left p {
+  font-size: 16px;
+}
+
+.login-right {
+  padding: 40px;
+  width: 50%;
+}
+
+.login-right form div {
+  margin-bottom: 15px;
+}
+
+.login-right label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.login-right input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-right button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px; /* Add margin bottom to the button */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-right button:hover {
+  background-color: #0056b3;
+}
+
+.forgot-password {
+  text-align: center;
+  margin-bottom: 20px; /* Add margin bottom to separate from signup link */
+}
+
+.forgot-password a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+.signup {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.signup a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signup a:hover {
+  text-decoration: underline;
+}
