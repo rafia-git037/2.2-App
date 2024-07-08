@@ -16,7 +16,7 @@ const mySchemas = { Users };
 module.exports = mySchemas;
 
 */
-
+//schemas.js - models- backend
 const Joi = require('joi');
 
 const signupValidation = (req, res, next) => {

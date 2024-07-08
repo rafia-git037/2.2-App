@@ -23,22 +23,20 @@ connectDb().then(() => {
 
 
 // backend/index.js
-
 const express = require('express');
 const connect_db = require('./connect/connect_db');
-const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const AuthRouter = require('./Routes/AuthRouter'); // Assuming this is for authentication routes
+const AuthRouter = require('./routes/AuthRouter'); // Assuming this is for authentication routes
 
 require('dotenv').config();
-require('./Models/db'); // Ensure your database models are loaded
+require('./models/db'); // Ensure your database models are loaded
 
+const app = express();
 const PORT = process.env.PORT || 8080;
 
 // Middleware
 app.use(bodyParser.json());
-
 app.use(cors());
 
 // Routes
@@ -57,4 +55,3 @@ connect_db()
     console.error('MongoDB connection failed:', error);
     process.exit(1); // Exit process if MongoDB connection fails
   });
-

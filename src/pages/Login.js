@@ -25,6 +25,10 @@ function Login() {
         }
         try {
             const url = `http://localhost:8080/auth/login`;
+           
+            //const url = `${process.env.REACT_APP_BACKEND_URL}/auth/login`;
+            console.log('helllllllllllllllloo  Login URL:', url); // Debugging line
+            
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
