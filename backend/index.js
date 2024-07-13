@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/auth', AuthRouter); // Assuming AuthRouter handles authentication routes
-
+app.get("/",(req ,res)=> res.json({message:"Hello world"}))
 // Connect to MongoDB
 connect_db()
   .then(() => {
