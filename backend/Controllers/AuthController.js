@@ -1,7 +1,7 @@
-//const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const UserModel = require("../models/User");
-const bcrypt = require('bcrypt')
+//const bcrypt = require('bcrypt')
+const argon2 = require('argon2'); 
 
 const signup = async (req, res) => {
     try {
@@ -14,7 +14,8 @@ const signup = async (req, res) => {
         }
 
         // Hash the password
-        const hashedPassword = await bcrypt.hash(password, 10);
+        //const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await argon2.hash(password, 10);
 
         // Create a new user instance
         const newUser = new UserModel({
