@@ -41,7 +41,7 @@ function Login() {
             const result = await response.json(); */
             const result =await axios.post(url, loginInfo)
     
-            const { success, message, jwtToken, name, error } = result;
+            const { success, message, jwtToken, name, error } = result.data;
             if (success) {
                 handleSuccess(message);
                 localStorage.setItem('token', jwtToken);
