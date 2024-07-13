@@ -3,9 +3,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from '../utils';
 import '../pages/Signup.css';
+import axios from 'axios';
 
 function Signup() {
-
     const [signupInfo, setSignupInfo] = useState({
         name: '',
         email: '',
@@ -32,7 +32,7 @@ function Signup() {
 
         try {
             //const url = `http://localhost:8080/auth/signup`;
-            const url = `${process.env.REACT_APP_BACKEND_URL}/auth/login`;
+            const url = `${process.env.REACT_APP_BACKEND_URL}/auth/signup`;
 
             const response = await fetch(url, {
                 method: "POST",
