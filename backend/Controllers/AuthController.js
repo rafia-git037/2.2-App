@@ -1,7 +1,6 @@
-/*const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const UserModel = require("../models/User");
-//const bcrypt = require('bcrypt')
-const argon2 = require('argon2'); 
+const bcrypt = require('bcrypt')
 
 const signup = async (req, res) => {
     try {
@@ -14,8 +13,8 @@ const signup = async (req, res) => {
         }
 
         // Hash the password
-        //const hashedPassword = await bcrypt.hash(password, 10);
-        const hashedPassword = await argon2.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
+       
 
         // Create a new user instance
         const newUser = new UserModel({
@@ -80,89 +79,6 @@ const login = async (req, res) => {
             password: user.password 
         })}`);
         console.log('User logged in successfully');
-
-        const jwtToken = jwt.sign(
-            { email: user.email, _id: user._id },
-            process.env.JWT_SECRET,
-            { expiresIn: '24h' }
-        );
-
-        res.status(200).json({
-            message: "Login successful",
-            success: true,
-            jwtToken,
-            email,
-            name: user.name
-        });
-    } catch (err) {
-        console.error("Error in login:", err);
-        res.status(500).json({
-            message: "Internal server error",
-            success: false
-        });
-    }
-}
-
-module.exports = {
-    signup,
-    login
-};
-*/
-const jwt = require('jsonwebtoken');
-const UserModel = require('../models/User');
-const argon2 = require('argon2');
-
-const signup = async (req, res) => {
-    try {
-        const { name, email, password } = req.body;
-        const userExists = await UserModel.findOne({ email });
-        if (userExists) {
-            return res.status(409).json({ message: 'User already exists, please login', success: false });
-        }
-
-        const hashedPassword = await argon2.hash(password);
-
-        const newUser = new UserModel({
-            name,
-            email,
-            password: hashedPassword
-        });
-
-        await newUser.save();
-
-        const jwtToken = jwt.sign(
-            { email: newUser.email, _id: newUser._id },
-            process.env.JWT_SECRET,
-            { expiresIn: '24h' }
-        );
-
-        res.status(201).json({
-            message: "Signup successful",
-            success: true,
-            jwtToken,
-            email: newUser.email,
-            name: newUser.name
-        });
-    } catch (err) {
-        console.error("Error in signup:", err);
-        res.status(500).json({
-            message: "Internal server error",
-            success: false
-        });
-    }
-}
-
-const login = async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        const user = await UserModel.findOne({ email });
-        if (!user) {
-            return res.status(403).json({ message: 'Authentication failed, email is wrong', success: false });
-        }
-        const isPassEqual = await argon2.verify(user.password, password);
-        if (!isPassEqual) {
-            return res.status(403).json({ message: 'Authentication failed, password is wrong', success: false });
-        }
 
         const jwtToken = jwt.sign(
             { email: user.email, _id: user._id },
