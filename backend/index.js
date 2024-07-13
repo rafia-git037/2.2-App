@@ -15,10 +15,7 @@ const PORT = process.env.PORT || 8080;
 app.use(bodyParser.json());
 
 
-app.use(cors({
-  origin : process.env.FRONTEND_URL,
-  credentials : true,
-}))
+app.use(cors())
 
 // Routes
 app.use('/auth', AuthRouter); // Assuming AuthRouter handles authentication routes
