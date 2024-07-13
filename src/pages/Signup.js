@@ -31,8 +31,9 @@ function Signup() {
 
 
         try {
-            const url = `http://localhost:8080/auth/signup`;
-            //const url = 'https://book-line-sabah-zerins-projects.vercel.app/auth/signup';
+            //const url = `http://localhost:8080/auth/signup`;
+            const url = `${process.env.REACT_APP_BACKEND_URL}/auth/login`;
+
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
