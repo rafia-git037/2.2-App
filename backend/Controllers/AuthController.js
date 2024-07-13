@@ -7,7 +7,7 @@ const signup = async (req, res) => {
     try {
         const { name, email, password } = req.body;
 
-        // Check if user already exists
+        //if user already exists
         const userExists = await UserModel.findOne({ email });
         if (userExists) {
             return res.status(409).json({ message: 'User already exists, please login', success: false });
@@ -76,7 +76,7 @@ const login = async (req, res) => {
         console.log(`User logged in: ${JSON.stringify({
             name: user.name,
             email: user.email,
-            password: user.password // Note: For security reasons, avoid logging passwords in production
+            password: user.password 
         })}`);
         console.log('User logged in successfully');
 

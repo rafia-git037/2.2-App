@@ -1,11 +1,11 @@
 .wishlist-page {
-    background-image: url('/src/images/hero-bg.jpg'); /* Adjust the background image path */
+    background-image: url('/src/images/hero-bg.jpg');
     background-size: cover;
     background-position: center;
     padding: 20px;
     border-radius: 10px;
-    position: relative; /* Make the container a positioned element */
-    color: #fff; /* Adjust text color for better contrast */
+    position: relative; 
+    color: #fff; /* text color for better contrast */
   }
   
   .back-button {

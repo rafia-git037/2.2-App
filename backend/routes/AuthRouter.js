@@ -8,6 +8,6 @@ const router = require('express').Router();
 
   
 router.post('/signup', signupValidation, signup);
-router.post('/login', loginValidation, login);  // Make sure login is correctly imported
+router.post('/login', loginValidation, login);  // Making sure login is correctly imported
 
 module.exports = router;

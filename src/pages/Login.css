@@ -17,7 +17,7 @@
 }
 
 .login-left {
-  background-image: url('../images/login-img.jpg'); /* Ensure this path is correct */
+  background-image: url('../images/login-img.jpg');
   background-size: cover;
   background-position: center;
   border-radius: 10px 0 0 10px;
@@ -61,7 +61,7 @@
 .login-right button {
   width: 100%;
   padding: 10px;
-  margin-bottom: 20px; /* Add margin bottom to the button */
+  margin-bottom: 20px; /*  margin bottom to the button */
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -76,7 +76,7 @@
 
 .forgot-password {
   text-align: center;
-  margin-bottom: 20px; /* Add margin bottom to separate from signup link */
+  margin-bottom: 20px; /* margin bottom to separate from signup link */
 }
 
 .forgot-password a {

@@ -5,7 +5,7 @@ import AddBook from './AddBook';
 import EditBook from './EditBook';
 import FavoritesList from './FavoritesList';
 
-// Import images
+
 import searchBgImage from './images/search-page-bg.jpg';
 
 const SearchPage = ({

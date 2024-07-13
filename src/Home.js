@@ -25,7 +25,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
 import logoImage from './images/logo.jpg';
-import heroBgImage from './images/hero-bg.jpg'; // Import the background image
+import heroBgImage from './images/hero-bg.jpg'; 
 import { ToastContainer } from 'react-toastify';
 import { useAuth } from './AuthContext';
 

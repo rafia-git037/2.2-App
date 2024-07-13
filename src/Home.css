@@ -1,9 +1,9 @@
 /* Navbar styles */
 .navbar {
-  background-color: rgba(83, 86, 88, 0.8); /* Adjust transparency here */
+  background-color: rgba(83, 86, 88, 0.8); /*transparency here */
   padding: 10px 20px;
   display: flex;
-  justify-content: center; /* Center the content horizontally */
+  justify-content: center; 
 }
 
 .navbar-content {
@@ -11,7 +11,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1200px; /* Adjust as needed */
+  max-width: 1200px; 
 }
 
 .logo-container {
@@ -55,7 +55,7 @@
 
 /* Home styles */
 .home {
-  background: url('./images/hero-bg.jpg') no-repeat center center/cover; /* Full screen background image */
+  background: url('./images/hero-bg.jpg') no-repeat center center/cover;
   height: 100vh;
   display: flex;
   flex-direction: column;
