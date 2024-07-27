@@ -28,6 +28,9 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   const [books, setBooks] = useState(initialBooks);
   const [query, setQuery] = useState("");
+
+  const [searchType, setSearchType] = useState("name"); // Add search type state
+
   const [showFavoritesScreen, setShowFavoritesScreen] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [editBook, setEditBook] = useState(null);
@@ -88,11 +91,16 @@ function App() {
   const deleteBook = (id) => {
     setBooks(prevBooks => prevBooks.filter(book => book.id !== id));
   };
-
-  const filteredBooks = books.filter(book =>
-    book.Name.toLowerCase().includes(query.toLowerCase()) ||
-    book.Writer.toLowerCase().includes(query.toLowerCase())
-  );
+  
+  // Update filteredBooks to handle search type
+  const filteredBooks = books.filter(book => {
+    if (searchType === "name") {
+      return book.Name.toLowerCase().includes(query.toLowerCase());
+    } else if (searchType === "writer") {
+      return book.Writer.toLowerCase().includes(query.toLowerCase());
+    }
+    return false;
+  });
 
   const favoriteBooks = books.filter(book => book.isFavourite);
 
@@ -112,6 +120,10 @@ function App() {
                     books={books}
                     query={query}
                     setQuery={setQuery}
+
+                    searchType={searchType} // Pass searchType as prop
+                    setSearchType={setSearchType} // Pass setSearchType as prop
+
                     showAddForm={showAddForm}
                     toggleAddForm={toggleAddForm}
                     addBook={handleAddBook}
