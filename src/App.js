@@ -8,7 +8,9 @@ import SearchPage from './SearchPage';
 import { AuthProvider, useAuth } from './AuthContext';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import FavoritesScreen from './FavoritesScreen'; // Import FavoritesScreen
+import FavoritesScreen from './FavoritesScreen'; 
+import AboutUs from './AboutUs'; 
+import ContactUs from './ContactUs';
 
 import searchBgImage from './images/search-page-bg.jpg';
 
@@ -91,7 +93,7 @@ function App() {
   const deleteBook = (id) => {
     setBooks(prevBooks => prevBooks.filter(book => book.id !== id));
   };
-  
+
   // Update filteredBooks to handle search type
   const filteredBooks = books.filter(book => {
     if (searchType === "name") {
@@ -152,6 +154,8 @@ function App() {
                 />
               </ProtectedRoute>
             } />
+             <Route path='/aboutus' element={<AboutUs />} /> 
+             <Route path='/contactus' element={<ContactUs />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
           </Routes>

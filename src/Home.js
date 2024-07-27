@@ -1,26 +1,3 @@
-// Home.js
-/*
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Home.css';
-
-const Home = () => {
-  const navigate = useNavigate();
-
-  const handleSearchClick = () => {
-    navigate('/search');
-  };
-
-  return (
-    <div className="home">
-      <h1>Welcome to BookStore</h1>
-      <button className="search-button" onClick={handleSearchClick}>Search</button>
-    </div>
-  );
-};
-
-export default Home;
-*/
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
@@ -59,8 +36,8 @@ const Home = () => {
             <Link to="/">Home</Link>
             <Link to="/favorites">Wishlist</Link>
             <Link to="/profile">User Profile</Link>
-            <Link to="#">About us</Link>
-            <Link to="#">Contact us</Link>
+            <Link to="/aboutus">About Us</Link>
+            <Link to="/contactus">Contact Us</Link>
           </nav>
           {isAuthenticated ? (
             <button onClick={handleLogout} className="login-btn">LOG OUT</button>
