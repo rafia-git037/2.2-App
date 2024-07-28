@@ -24,21 +24,13 @@ function Login() {
         if (!email || !password) {
             return handleError('Email and password are required');
         }
+        if (password.length < 4) {
+            return handleError('Password must be at least 4 characters long');
+        }
         try {
-        //   const url = `http://localhost:8080/auth/login`;
-           
             const url = `${process.env.REACT_APP_BACKEND_URL}/auth/login`;
             console.log('helllllllllllllllloo  Login URL:', url); // Debugging line
-            
-         /*   const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(loginInfo)
-            });
-
-            const result = await response.json(); */
+           
             const result =await axios.post(url, loginInfo)
     
             const { success, message, jwtToken, name, error } = result.data;

@@ -28,10 +28,11 @@ function Signup() {
         if (!name || !email || !password) {
             return handleError('name, email and password are required')
         }
-
+        if (password.length < 4) {
+            return handleError('Password must be at least 4 characters long');
+        }
 
         try {
-            //const url = `http://localhost:8080/auth/signup`;
             const url = `${process.env.REACT_APP_BACKEND_URL}/auth/signup`;
 
             const response = await fetch(url, {
