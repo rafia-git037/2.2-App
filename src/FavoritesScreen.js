@@ -9,8 +9,7 @@ const FavoritesScreen = ({ books, handleEditClick, handleDeleteFavorite }) => {
         <ul>
           {books.map(book => (
             <li key={book.id}>
-              <span>{book.Name}</span>
-              <button onClick={() => handleEditClick(book.id)}>Edit</button>
+             <h3>{book.Name}  by {book.Writer} : ${book.Price} </h3>
               <button onClick={() => handleDeleteFavorite(book.id)}>Remove from Favorites</button>
             </li>
           ))}
