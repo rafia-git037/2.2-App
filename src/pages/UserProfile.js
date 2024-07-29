@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuth } from '../AuthContext'; // Go up one level to import AuthContext
+import { useAuth } from '../AuthContext'; // Import AuthContext
 import './UserProfile.css';
 
 const UserProfile = () => {
@@ -8,24 +8,20 @@ const UserProfile = () => {
   return (
     <div className="user-profile">
       <h1>User Profile</h1>
-      <table className="profile-table">
-        <thead>
-          <tr>
-            <th>Field</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Name</td>
-            <td>{userDetails.name}</td>
-          </tr>
-          <tr>
-            <td>Email</td>
-            <td>{userDetails.email}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="profile-card">
+        <table className="profile-table">
+          <tbody>
+            <tr>
+              <td className="field">Name </td>
+              <td className="value">{userDetails.name}</td>
+            </tr>
+            <tr>
+              <td className="field">Email</td>
+              <td className="value">{userDetails.email}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

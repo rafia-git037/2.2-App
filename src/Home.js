@@ -44,7 +44,7 @@ const Home = () => {
   
       <div className="home-content">
         <h1>
-          Welcome to BookLine{isAuthenticated ? ` - ${userDetails.name} - Email: ${userDetails.email}` : ''}
+          Welcome  {isAuthenticated ? ` ${userDetails.name} ` : ''}
         </h1>
         <p>Explore and manage your favorite books.</p>
         <div className="home-buttons">

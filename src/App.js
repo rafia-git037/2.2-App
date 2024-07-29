@@ -156,9 +156,13 @@ function App() {
                   handleEditClick={handleEditClick}
                   handleDeleteFavorite={handleDeleteFavorite}
                 />
-                
               </ProtectedRoute>
             } />
+            <Route path="/profile" element={
+              <ProtectedRoute>
+                <UserProfile />
+                </ProtectedRoute>
+              } />
              <Route path='/aboutus' element={<AboutUs />} /> 
              <Route path='/contactus' element={<ContactUs />} />
             <Route path='/login' element={<Login />} />
