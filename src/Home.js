@@ -1,5 +1,5 @@
 // Home.js
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
 import logoImage from './images/logo.jpg';
@@ -7,13 +7,8 @@ import { ToastContainer } from 'react-toastify';
 import { useAuth } from './AuthContext';
 
 const Home = () => {
-  const [loggedInUser, setLoggedInUser] = useState('');
   const navigate = useNavigate();
-  const { isAuthenticated, logout } = useAuth();
-
-  useEffect(() => {
-    setLoggedInUser(localStorage.getItem('loggedInUser'));
-  }, []);
+  const { isAuthenticated, userDetails, logout } = useAuth();
 
   const handleLogout = () => {
     logout();
@@ -46,9 +41,11 @@ const Home = () => {
           )}
         </div>
       </header>
-    
+  
       <div className="home-content">
-        <h1>Welcome to BookLine</h1>
+        <h1>
+          Welcome to BookLine{isAuthenticated ? ` - ${userDetails.name} - Email: ${userDetails.email}` : ''}
+        </h1>
         <p>Explore and manage your favorite books.</p>
         <div className="home-buttons">
           <button className="home-button" onClick={handleSearchClick}>Search Books</button>

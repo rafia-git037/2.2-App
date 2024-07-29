@@ -1,0 +1,25 @@
+/* src/page/ UserProfile.css */
+.user-profile {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .profile-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .profile-table th, .profile-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .profile-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .profile-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
