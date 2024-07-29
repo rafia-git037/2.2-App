@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from '../utils';
 import '../pages/Login.css';
 import axios from 'axios';
+import { useAuth } from '../AuthContext'; // Import useAuth
 
 function Login() {
     const [loginInfo, setLoginInfo] = useState({
@@ -11,6 +12,7 @@ function Login() {
         password: ''
     });
 
+    const { login } = useAuth(); // Get login function from context
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -29,15 +31,13 @@ function Login() {
         }
         try {
             const url = `${process.env.REACT_APP_BACKEND_URL}/auth/login`;
-            console.log('helllllllllllllllloo  Login URL:', url); // Debugging line
-           
-            const result =await axios.post(url, loginInfo)
-    
+            const result = await axios.post(url, loginInfo);
             const { success, message, jwtToken, name, error } = result.data;
             if (success) {
                 handleSuccess(message);
                 localStorage.setItem('token', jwtToken);
                 localStorage.setItem('loggedInUser', name);
+                login(name); // Update the authentication state
                 setTimeout(() => {
                     navigate('/');
                 }, 1000);

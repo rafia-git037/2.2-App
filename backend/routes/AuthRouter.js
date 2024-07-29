@@ -1,13 +1,11 @@
 // backend/Routes/AuthRouter.js
 
-const { signup, login } = require('../Controllers/AuthController');
-const { signupValidation, loginValidation } = require('../Middlewares/AuthValidation');
-
+const { signup, login } = require('../controllers/AuthController');
+const { signupValidation, loginValidation } = require('../middlewares/AuthValidation');
 
 const router = require('express').Router();
 
-  
 router.post('/signup', signupValidation, signup);
-router.post('/login', loginValidation, login);  // Making sure login is correctly imported
+router.post('/login', loginValidation, login);
 
 module.exports = router;
