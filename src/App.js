@@ -6,8 +6,11 @@ import { Book } from './book';
 import Home from './Home';
 import SearchPage from './SearchPage';
 import { AuthProvider, useAuth } from './AuthContext';
+
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import UserProfile from './pages/UserProfile';
+
 import FavoritesScreen from './FavoritesScreen'; 
 import AboutUs from './AboutUs'; 
 import ContactUs from './ContactUs';
@@ -118,6 +121,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/search"element={
                 <ProtectedRoute>
+                  
                   <SearchPage
                     books={books}
                     query={query}
@@ -152,6 +156,7 @@ function App() {
                   handleEditClick={handleEditClick}
                   handleDeleteFavorite={handleDeleteFavorite}
                 />
+                
               </ProtectedRoute>
             } />
              <Route path='/aboutus' element={<AboutUs />} /> 

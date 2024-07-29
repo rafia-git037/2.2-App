@@ -32,15 +32,15 @@ function Login() {
     }
     try {
       const url = `${process.env.REACT_APP_BACKEND_URL}/auth/login`;
-      console.log('helllllllllllllllloo  Login URL:', url); // Debugging line
-      const result =await axios.post(url, loginInfo);
+      const result = await axios.post(url, loginInfo);
 
-      const { success, message, jwtToken, name, error } = result.data;
+      const { success, message, jwtToken, name, email, error } = result.data;
       if (success) {
         handleSuccess(message);
         localStorage.setItem('token', jwtToken);
         localStorage.setItem('loggedInUser', name);
-        login(); // Update authentication status
+        localStorage.setItem('loggedInUserEmail', email);
+        login(name, email); // Pass name and email
         setTimeout(() => {
           navigate('/');
         }, 1000);
