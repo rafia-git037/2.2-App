@@ -52,6 +52,7 @@ const Home = () => {
         <p>Explore and manage your favorite books.</p>
         <div className="home-buttons">
           <button className="home-button" onClick={handleSearchClick}>Search Books</button>
+          <Link to="/signup" className="home-button">Sign Up</Link>
         </div>
       </div>
       
